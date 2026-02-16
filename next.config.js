@@ -2,7 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   output: 'export',
-  basePath: '/kevin-bday',
+  basePath: process.env.NODE_ENV === 'prod' ? '/kevin-bday' : '',
+  
   trailingSlash: true,
   images: {
     unoptimized: true,
