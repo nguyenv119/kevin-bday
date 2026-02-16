@@ -7,11 +7,6 @@ const inter = Inter({ subsets: ['latin'], display: 'swap' })
 export const metadata: Metadata = {
   title: 'Happy Birthday',
   description: 'A special birthday message',
-  icons: {
-    icon: [
-      { url: '/favicon.png', type: 'image/png' },
-    ],
-  },
 }
 
 export default function RootLayout({
