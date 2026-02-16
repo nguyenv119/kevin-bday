@@ -53,14 +53,11 @@ export default function Home() {
   useEffect(() => {
     const fetchConfig = async () => {
       try {
-        const { data, error: fetchError } = await supabase
-          .from('birthday_config')
-          .select('question')
-          .single()
+        const { data, error: fetchError } = await supabase.rpc('get_birthday_question')
 
         if (fetchError) throw fetchError
-        if (data?.question) {
-          setQuestion(data.question)
+        if (data && data.length > 0) {
+          setQuestion(data[0].question)
         }
       } catch (err) {
         console.error('Error fetching question:', err)
@@ -115,18 +112,16 @@ export default function Home() {
     setLoading(true)
 
     try {
-      const { data, error: queryError } = await supabase
-        .from('birthday_config')
-        .select('password, message')
-        .eq('password', password)
-        .single()
+      const { data, error: queryError } = await supabase.rpc('validate_birthday_password', {
+        input_password: password,
+      })
 
       if (queryError) {
         throw queryError
       }
 
-      if (data) {
-        setMessage(data.message)
+      if (data && data.length > 0) {
+        setMessage(data[0].message)
         setPassword('')
       } else {
         setError('Incorrect password. Please try again.')
