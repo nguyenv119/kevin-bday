@@ -12,6 +12,10 @@ module.exports = {
         'patriots-red': '#C60C30',
         'patriots-silver': '#B0B7BC',
       },
+      fontFamily: {
+        'display': ['var(--font-cormorant)', 'Georgia', 'serif'],
+        'ui': ['var(--font-dm-sans)', 'system-ui', 'sans-serif'],
+      },
     },
   },
   plugins: [],
